@@ -104,9 +104,11 @@ var Engine = (function(global) {
      * they are just drawing the entire screen over and over.
      */
     function checkCollisions() {
+        // As update runs each enemy checks if it has a conflicting position
+        // with a players position. Resets the player if that is the case
         allEnemies.forEach(function(enemy) {
             if (player.y - enemy.y == 14) {
-                if (player.x < enemy.x + 70 && player.x + 70 > enemy.x){
+                if (player.x < enemy.x + 72 && player.x + 72 > enemy.x){
                     player.reset();
                 }
             }

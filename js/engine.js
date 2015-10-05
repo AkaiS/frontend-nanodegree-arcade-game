@@ -94,7 +94,7 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
         });
-        //player.update();
+        //player.reset();
     }
 
     /* This function initially draws the "game level", it will then call
@@ -103,6 +103,17 @@ var Engine = (function(global) {
      * they are flipbooks creating the illusion of animation but in reality
      * they are just drawing the entire screen over and over.
      */
+    function checkCollisions() {
+        allEnemies.forEach(function(enemy) {
+            if (player.y - enemy.y == 14) {
+                if (player.x < enemy.x + 70 && player.x + 70 > enemy.x){
+                    player.reset();
+                }
+            }
+        });
+    }
+
+
     function render() {
         /* This array holds the relative URL to the image used
          * for that particular row of the game level.

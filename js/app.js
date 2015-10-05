@@ -19,6 +19,7 @@ Enemy.prototype.update = function(dt) {
     // all computers.
     this.x = this.x + (dt * this.rate);
 
+    // Bugs reappear on other side of the screen after exiting one side
     if (this.x > 550) {
         this.x = -100;
     }

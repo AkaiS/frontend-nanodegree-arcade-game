@@ -26,7 +26,7 @@ var Engine = (function(global) {
         lastTime;
 
     canvas.width = 505;
-    canvas.height = 606;
+    canvas.height = 700;
     doc.body.appendChild(canvas);
 
     /* This function serves as the kickoff point for the game loop itself
@@ -66,7 +66,28 @@ var Engine = (function(global) {
     function init() {
         reset();
         lastTime = Date.now();
-        main();
+        characterSelect();
+    }
+
+    function characterSelect() {
+        var characters = [
+            'images/char-boy.png',
+            'images/char-cat-girl.png',
+            'images/char-horn-girl.png',
+            'images/char-pink-girl.png',
+            'images/char-princess-girl.png'
+        ];
+
+        for (c = 0; c < 5; c++) {
+            ctx.drawImage(Resources.get('images/Selector.png'), 202, 575);
+            ctx.drawImage(Resources.get(characters[c]), c * 101, 505);
+        }
+        
+        characters.forEach(function() {
+            if 
+        }
+
+            main();
     }
 
     /* This function is called by main (our game loop) and itself calls all
@@ -185,7 +206,12 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/Selector.png',
+        'images/char-boy.png',
+        'images/char-cat-girl.png',
+        'images/char-horn-girl.png',
+        'images/char-pink-girl.png',
+        'images/char-princess-girl.png'
     ]);
     Resources.onReady(init);
 

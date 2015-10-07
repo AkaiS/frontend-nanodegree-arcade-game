@@ -1,3 +1,15 @@
+
+var Selector = function() {
+    this.sprite = 'images/Selector.png';
+    this.character;
+    this.x = 202;
+    this.y = 505;
+}
+
+Selector.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y)
+}
+
 // Enemies our player must avoid
 var Enemy = function(x, y) {
     // Variables applied to each of our instances go here,
@@ -31,7 +43,7 @@ Enemy.prototype.render = function() {
 };
 
 var Player = function() {
-    this.sprite = 'images/char-boy.png'
+    this.sprite = selector.character;
     this.x = 202;
     this.y = 404;
 };
@@ -89,6 +101,8 @@ for (var i=0; i<4; i++) {
 }
 
 var player = new Player();
+
+var selector = new Selector();
 
 
 // This listens for key presses and sends the keys to your

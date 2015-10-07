@@ -78,16 +78,16 @@ var Engine = (function(global) {
             'images/char-princess-girl.png'
         ];
 
+        selector.render();
+
+
         for (c = 0; c < 5; c++) {
-            ctx.drawImage(Resources.get('images/Selector.png'), 202, 575);
             ctx.drawImage(Resources.get(characters[c]), c * 101, 505);
         }
         
-        characters.forEach(function() {
-            if 
-        }
+        
 
-            main();
+        main();
     }
 
     /* This function is called by main (our game loop) and itself calls all

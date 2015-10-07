@@ -53,6 +53,8 @@ var Engine = (function(global) {
          */
         lastTime = now;
 
+        
+
         /* Use the browser's requestAnimationFrame function to call this
          * function again as soon as the browser is able to draw another frame.
          */
@@ -70,18 +72,11 @@ var Engine = (function(global) {
     }
 
     function characterSelect() {
-        var characters = [
-            'images/char-boy.png',
-            'images/char-cat-girl.png',
-            'images/char-horn-girl.png',
-            'images/char-pink-girl.png',
-            'images/char-princess-girl.png'
-        ];
 
         selector.render();
 
         for (c = 0; c < 5; c++) {
-            ctx.drawImage(Resources.get(characters[c]), c * 101, 505);
+            ctx.drawImage(Resources.get(selector.characters[c]), c * 101, 303);
         }
         
         selectorListener();
@@ -216,4 +211,5 @@ var Engine = (function(global) {
      * from within their app.js files.
      */
     global.ctx = ctx;
+    global.main = main;
 })(this);

@@ -1,13 +1,19 @@
 
 var Selector = function() {
     this.sprite = 'images/Selector.png';
-    this.character;
+    this.characters = [
+        'images/char-boy.png',
+        'images/char-cat-girl.png',
+        'images/char-horn-girl.png',
+        'images/char-pink-girl.png',
+        'images/char-princess-girl.png'
+    ];
     this.x = 202;
-    this.y = 505;
+    this.y = 303;
 }
 
 Selector.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y)
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
 Selector.prototype.handleInput = function(key) {
@@ -30,8 +36,8 @@ Selector.prototype.handleInput = function(key) {
     }
 }
 
-Selector.prototype.select = function(characters) {
-    this.character = characters[]
+Selector.prototype.select = function() {
+    player.sprite = this.characters[(this.x / 101)];
 }
 
 // Enemies our player must avoid
@@ -45,7 +51,7 @@ var Enemy = function(x, y) {
     this.x = x;
     this.y = y;
     this.rate = (50 + Math.floor(Math.random() * 150));
-};
+}
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -59,18 +65,18 @@ Enemy.prototype.update = function(dt) {
     if (this.x > 550) {
         this.x = -100;
     }
-};
+}
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
+}
 
 var Player = function() {
-    this.sprite = selector.character;
+    this.sprite;
     this.x = 202;
     this.y = 404;
-};
+}
 
 Player.prototype.handleInput = function(key) {
     // Provide cases for inputs

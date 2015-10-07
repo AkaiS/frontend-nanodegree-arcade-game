@@ -31,9 +31,6 @@ Selector.prototype.handleInput = function(key) {
             break;
         case 'space':
             this.select();
-            removeSelectorListener();
-            gameListener();
-            main();
             break;
     }
 }
@@ -118,10 +115,6 @@ Player.prototype.reset = function() {
     this.y = 404;
 }
 
-Player.prototype.update = function() {
-
-}
-
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
@@ -137,32 +130,28 @@ var player = new Player();
 var selector = new Selector();
 
 
-// This listens for key presses and sends the keys to your
-// Player.handleInput() method. You don't need to modify this.
+// This listens for key presses and sends the keys to
+// selector.handleInput() method.
+var listener = function(e) {
+    var allowedKeys = {
+        32: 'space',
+        37: 'left',
+        39: 'right',
+    };
+
+    selector.handleInput(allowedKeys[e.keyCode]);
+}
+
 var selectorListener = function() {
-    document.addEventListener('keyup', function(e) {
-        var allowedKeys = {
-            32: 'space',
-            38: 'up',
-            39: 'right',
-        };
-
-        selector.handleInput(allowedKeys[e.keyCode]);
-    });
+    document.addEventListener('keyup', listener);
 }
 
+// remove listener so keys can be used for game
 var removeSelectorListener = function() {
-    document.addEventListener('keyup', function(e) {
-        var allowedKeys = {
-            32: 'space',
-            38: 'up',
-            39: 'right',
-        };
-
-        selector.handleInput(allowedKeys[e.keyCode]);
-    });
+    document.removeEventListener('keyup', listener);
 }
-
+// This listens for key presses and sends the keys to
+// player.handleInput() method.
 var gameListener = function() {
     document.addEventListener('keyup', function(e) {
         var allowedKeys = {

@@ -46,6 +46,7 @@ var Engine = (function(global) {
          * our update function since it may be used for smooth animation.
          */
         update(dt);
+        ctx.clearRect(0, 0, 505, 50)
         render();
 
         /* Set our lastTime variable which is used to determine the time delta
@@ -53,7 +54,7 @@ var Engine = (function(global) {
          */
         lastTime = now;
 
-        
+
 
         /* Use the browser's requestAnimationFrame function to call this
          * function again as soon as the browser is able to draw another frame.
@@ -72,6 +73,7 @@ var Engine = (function(global) {
     }
 
     function characterSelect() {
+        ctx.clearRect(0, 0, 505, 700);
 
         selector.render();
 
@@ -80,6 +82,16 @@ var Engine = (function(global) {
         }
         
         selectorListener();
+
+        if(player.sprite !== undefined) {
+            removeSelectorListener();
+            gameListener();
+            main();
+        }
+
+        else {
+            win.requestAnimationFrame(characterSelect);
+        }
     }
 
     /* This function is called by main (our game loop) and itself calls all

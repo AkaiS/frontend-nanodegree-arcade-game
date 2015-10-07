@@ -31,6 +31,8 @@ Selector.prototype.handleInput = function(key) {
             break;
         case 'space':
             this.select();
+            removeSelectorListener();
+            gameListener();
             main();
             break;
     }
@@ -138,6 +140,18 @@ var selector = new Selector();
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 var selectorListener = function() {
+    document.addEventListener('keyup', function(e) {
+        var allowedKeys = {
+            32: 'space',
+            38: 'up',
+            39: 'right',
+        };
+
+        selector.handleInput(allowedKeys[e.keyCode]);
+    });
+}
+
+var removeSelectorListener = function() {
     document.addEventListener('keyup', function(e) {
         var allowedKeys = {
             32: 'space',

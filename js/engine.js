@@ -80,14 +80,11 @@ var Engine = (function(global) {
 
         selector.render();
 
-
         for (c = 0; c < 5; c++) {
             ctx.drawImage(Resources.get(characters[c]), c * 101, 505);
         }
         
-        
-
-        main();
+        selectorListener();
     }
 
     /* This function is called by main (our game loop) and itself calls all
@@ -135,7 +132,6 @@ var Engine = (function(global) {
             }
         });
     }
-
 
     function render() {
         /* This array holds the relative URL to the image used

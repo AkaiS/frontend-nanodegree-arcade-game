@@ -10,6 +10,30 @@ Selector.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y)
 }
 
+Selector.prototype.handleInput = function(key) {
+    // Provide cases for inputs
+    switch(key) {
+        case 'left':
+            if (this.x > 0) {
+                this.x -= 101;
+            }
+            break;
+        case 'right':
+            if (this.x < 404) {
+                this.x += 101;
+            }
+            break;
+        case 'space':
+            this.select();
+            main();
+            break;
+    }
+}
+
+Selector.prototype.select = function(characters) {
+    this.character = characters[]
+}
+
 // Enemies our player must avoid
 var Enemy = function(x, y) {
     // Variables applied to each of our instances go here,
@@ -107,14 +131,28 @@ var selector = new Selector();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
-document.addEventListener('keyup', function(e) {
-    var allowedKeys = {
-        32: 'space',
-        37: 'left',
-        38: 'up',
-        39: 'right',
-        40: 'down'
-    };
+var selectorListener = function() {
+    document.addEventListener('keyup', function(e) {
+        var allowedKeys = {
+            32: 'space',
+            38: 'up',
+            39: 'right',
+        };
 
-    player.handleInput(allowedKeys[e.keyCode]);
-});
+        selector.handleInput(allowedKeys[e.keyCode]);
+    });
+}
+
+var gameListener = function() {
+    document.addEventListener('keyup', function(e) {
+        var allowedKeys = {
+            32: 'space',
+            37: 'left',
+            38: 'up',
+            39: 'right',
+            40: 'down'
+        };
+
+        player.handleInput(allowedKeys[e.keyCode]);
+    });
+}

@@ -123,7 +123,7 @@ Player.prototype.reset = function() {
 
 allEnemies = [];
 for (var i=0; i<6; i++) {
-    var enemy = new Enemy(i * 101, 60 + (i * 83));
+    var enemy = new Enemy(i * 101, 60 + (Math.floor(Math.random() * 6) * 83));
     allEnemies.push(enemy);
 }
 

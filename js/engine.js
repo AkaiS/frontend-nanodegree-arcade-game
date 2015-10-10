@@ -25,8 +25,8 @@ var Engine = (function(global) {
         ctx = canvas.getContext('2d'),
         lastTime;
 
-    canvas.width = 505;
-    canvas.height = 700;
+    canvas.width = 707;
+    canvas.height = 800;
     doc.body.appendChild(canvas);
 
     /* This function serves as the kickoff point for the game loop itself
@@ -46,7 +46,7 @@ var Engine = (function(global) {
          * our update function since it may be used for smooth animation.
          */
         update(dt);
-        ctx.clearRect(0, 0, 505, 50)
+        ctx.clearRect(0, 0, 707, 50)
         render();
 
         /* Set our lastTime variable which is used to determine the time delta
@@ -73,12 +73,12 @@ var Engine = (function(global) {
     }
 
     function characterSelect() {
-        ctx.clearRect(0, 0, 505, 700);
+        ctx.clearRect(0, 0, 707, 800);
 
         selector.render();
 
         for (c = 0; c < 5; c++) {
-            ctx.drawImage(Resources.get(selector.characters[c]), c * 101, 303);
+            ctx.drawImage(Resources.get(selector.characters[c]), (c + 1) * 101, 303);
         }
         
         selectorListener();
@@ -132,7 +132,7 @@ var Engine = (function(global) {
         // As update runs each enemy checks if it has a conflicting position
         // with a players position. Resets the player if that is the case
         allEnemies.forEach(function(enemy) {
-            if (player.y - enemy.y == 14) {
+            if (player.y - enemy.y == 4) {
                 if (player.x < enemy.x + 72 && player.x + 72 > enemy.x){
                     player.reset();
                 }
@@ -145,6 +145,8 @@ var Engine = (function(global) {
          * for that particular row of the game level.
          */
         var rowImages = [
+                'images/grass-block.png',
+                'images/water-block.png',
                 'images/water-block.png',   // Top row is water
                 'images/stone-block.png',   // Row 1 of 3 of stone
                 'images/stone-block.png',   // Row 2 of 3 of stone
@@ -152,8 +154,8 @@ var Engine = (function(global) {
                 'images/grass-block.png',   // Row 1 of 2 of grass
                 'images/grass-block.png'    // Row 2 of 2 of grass
             ],
-            numRows = 6,
-            numCols = 5,
+            numRows = 8,
+            numCols = 7,
             row, col;
 
         /* Loop through the number of rows and columns we've defined above

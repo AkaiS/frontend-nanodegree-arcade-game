@@ -1,3 +1,9 @@
+var Game = function() {
+    this.paused = false;
+    this.difficulties = {'easy': 50, 'medium': 100, 'hard': 150};
+    this.difficulty;
+}
+
 
 var Selector = function() {
     this.sprite = 'images/Selector.png';
@@ -50,8 +56,6 @@ var Enemy = function(x, y) {
     this.x = x;
     this.y = y;
     this.rate = (50 + Math.floor(Math.random() * 150));
-    this.difficulties = {'easy': 50, 'medium': 100, 'hard': 150};
-    this.difficulty;
 }
 
 // Update the enemy's position, required method for game
